@@ -33,6 +33,11 @@ class Mpc
     status_hash[:state] == "stop"
   end
 
+  def playing?
+    status_hash = status
+    status_hash[:state] == "play"
+  end
+
   def next
     puts("next")
   end
@@ -261,7 +266,7 @@ class Mpc
     output = Array.new
     list.each do |song|
       if song.match(@@regexps["FILE"])
-        output << song.split(": ",2).second.gsub!("\n","")
+        output << song.split(": ",2)[1].gsub!("\n","")
       end
     end
     output
