@@ -15,6 +15,11 @@ class Mpc
     puts(command)
   end
 
+  def playing?
+    status_hash = status
+    status_hash[:state] == "play"
+  end
+
   def pause
     puts("pause 1")
   end
