@@ -1,3 +1,6 @@
+require 'socket'
+require 'tree'
+
 class Mpc
   @@regexps = {
     "ACK"  => /\AACK \[(\d+)\@(\d+)\] \{(.*)\} (.+)\Z/,
@@ -106,6 +109,11 @@ class Mpc
     song = current_song[:pos]
   end
   puts("seek #{song.to_s} #{time.to_s}")
+ end
+
+ def song_time
+  status_hash = status
+  status_hash[:time]
  end
 
  def find(type, what = "")
