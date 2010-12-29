@@ -13,6 +13,10 @@ class Mpc
     @socket.gets
   end
 
+  def shutdown!
+    @socket.close
+  end
+
   def play(song = nil)
     song.nil? ? command = "play" : command = "play #{song.to_s}"
     puts(command)
