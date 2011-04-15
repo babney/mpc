@@ -127,7 +127,7 @@ class Mpc
   if what == ""
     raise Exception.new(" \"What\" can\"t be an empty string")
   end
-  parse_song_list(puts("search #{type} #{what}"))
+  parse_song_list(puts("search #{type} \"#{what}\""))
  end
 
  def current_playlist_songs
