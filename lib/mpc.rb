@@ -121,13 +121,17 @@ class Mpc
  end
 
  def find(type, what = "")
-  unless type.match(/\A(title|artist|album|filename)\Z/)
+  unless type.match(/\A(title|artist|album|filename|all)\Z/)
     raise Exception.new("Wrong type: #{type}")
   end
   if what == ""
     raise Exception.new(" \"What\" can\"t be an empty string")
+  elsif type == "all"
+    ["title", "artist", "album", "filename"].map{|t| find(t, what)}.reduce{|total, result| total+result}.uniq
+  else
+    print "search #{type} \"#{what}\"\n"
+    parse_song_list(puts("search #{type} \"#{what}\""))
   end
-  parse_song_list(puts("search #{type} \"#{what}\""))
  end
 
  def current_playlist_songs
